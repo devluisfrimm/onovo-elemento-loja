@@ -19,6 +19,11 @@
                    este valor do produto quando presente.
     description -> descrição curta do produto (aparece na página da peça)
     featured    -> true para destacar o produto na página inicial
+    coverImage  -> (opcional) foto usada na vitrine do catálogo (grade da
+                   home). Se não definir, usa automaticamente a 1ª foto da
+                   1ª cor. Use quando quiser uma foto diferente na vitrine
+                   (ex: uma foto com todas as cores juntas) sem misturar
+                   ela na galeria de nenhuma cor específica.
     notes       -> (opcional) lista de observações rápidas, tipo os bullets
                    com emoji que a cliente manda (tamanho/veste como,
                    material, modelagem etc.). Aparecem em lista na página
@@ -61,9 +66,195 @@
 // Tule Assimétrica 1961, Body Tule Corset 1962, Calça Legging Fuso Prada
 // 1963, Vestido Bianco 1964, Conjunto Geórgia 1966, Conjunto Essence 1967,
 // Conjunto Marília 1968, Body Roma 1969, Vestido Lili 1979, Vestido Ravena
-// 1980, Vestido Vintage 1981, Vestido Serena 1984. Conjunto Cetim Duo
-// ainda não tem código informado pela cliente.
+// 1980, Vestido Vintage 1981, Vestido Serena 1984, Blusa Éloise 1987, Blusa
+// Amélie 1988, Blusa Celeste 1989, Blusa Margot 1990, Blusa Bella 1991.
+// Conjunto Cetim Duo ainda não tem código informado pela cliente.
 const PRODUCTS = [
+  {
+    id: "blusa-eloise-1987",
+    name: "Blusa Éloise",
+    category: "Blusas",
+    price: 217.9,
+    promoPrice: null,
+    sizes: ["P", "M"],
+    description:
+      "Elegante, moderna e cheia de personalidade. A Blusa Éloise é confeccionada em poliamida, com modelagem ajustada ao corpo e gola alta. O destaque fica por conta da abertura lateral assimétrica, que cria um efeito alongado e traz movimento à peça. No tom creme, é uma peça sofisticada e versátil, perfeita para combinar com jeans, alfaiataria ou peças mais estruturadas — daquelas que transformam uma produção básica em um look marcante.",
+    notes: [
+      "Tecido: poliamida",
+      "Modelagem ajustada ao corpo",
+      "Detalhes: gola alta e abertura lateral alongada",
+    ],
+    featured: true,
+    colors: [
+      {
+        name: "Creme",
+        hex: "#e8ddc4",
+        code: "1987",
+        images: ["assets/produtos/blusa-eloise-1987-creme-1.jpg"],
+      },
+    ],
+  },
+  {
+    id: "blusa-amelie-1988",
+    name: "Blusa Amélie",
+    category: "Blusas",
+    price: 147.9,
+    promoPrice: null,
+    sizes: [],
+    description:
+      "Sofisticada e delicada na medida certa. A Blusa Amélie possui modelagem alongada e assimétrica, confeccionada em tecido acetinado com caimento leve e fluido. O acabamento em renda na barra traz transparência e um toque romântico à peça, deixando o look ainda mais elegante. Uma peça versátil que fica incrível tanto com jeans quanto com alfaiataria, podendo ser usada em produções mais casuais ou sofisticadas.",
+    notes: [
+      "Modelagem alongada e assimétrica",
+      "Barra com acabamento em renda",
+    ],
+    featured: true,
+    colors: [
+      {
+        name: "Preto",
+        hex: "#161616",
+        code: "1988",
+        sizes: ["G"],
+        images: ["assets/produtos/blusa-amelie-1988-preto-1.jpg"],
+      },
+      {
+        name: "Branco",
+        hex: "#f5f3ee",
+        code: "1988",
+        sizes: ["P"],
+        images: ["assets/produtos/blusa-amelie-1988-branco-1.jpg"],
+      },
+      {
+        name: "Marrom",
+        hex: "#5a3a2a",
+        code: "1988",
+        sizes: ["M"],
+        images: ["assets/produtos/blusa-amelie-1988-marrom-1.jpg"],
+      },
+      {
+        name: "Creme",
+        hex: "#e8ddc4",
+        code: "1988",
+        sizes: ["P", "M"],
+        images: ["assets/produtos/blusa-amelie-1988-creme-1.jpg"],
+      },
+    ],
+  },
+  {
+    id: "blusa-celeste-1989",
+    name: "Blusa Celeste",
+    category: "Blusas",
+    price: 139.9,
+    promoPrice: null,
+    sizes: ["P", "M"],
+    description:
+      "Delicada, feminina e super versátil. A Blusa Celeste possui modelagem ajustada ao corpo, alças finas e decote com efeito drapeado, finalizado com renda delicada que traz um toque romântico e sofisticado à peça. Em poliamida, tem ótimo caimento e é aquela blusinha perfeita para compor desde produções mais casuais com jeans até looks mais elegantes com alfaiataria.",
+    notes: [
+      "Tecido: poliamida",
+      "Alças finas, decote drapeado e acabamento em renda",
+      "Apenas 1 peça de cada tamanho (P e M)",
+    ],
+    featured: true,
+    colors: [
+      {
+        name: "Branco",
+        hex: "#f5f3ee",
+        images: [
+          "assets/produtos/blusa-celeste-1989-branco-1.jpg",
+          "assets/produtos/blusa-celeste-1989-branco-2.jpg",
+        ],
+      },
+    ],
+  },
+  {
+    id: "blusa-margot-1990",
+    name: "Blusa Margot",
+    category: "Blusas",
+    // Capa própria (foto do varal com as peças penduradas) em vez da 1ª
+    // foto da 1ª cor — pedido da cliente, foto mais bonita que os recortes
+    // individuais por cor.
+    coverImage: "assets/produtos/blusa-margot-1990-capa.jpg",
+    price: 149.9,
+    promoPrice: null,
+    sizes: ["P", "M"],
+    description:
+      "Clássica com um toque delicado. A Blusa Margot é confeccionada em poliamida, possui modelagem ajustada ao corpo e gola alta, valorizando a silhueta de forma elegante. Os detalhes em renda nos ombros e na barra trazem feminilidade e deixam a peça ainda mais sofisticada. Perfeita para usar com jeans em uma proposta moderna ou com alfaiataria para um look mais elegante.",
+    notes: [
+      "Tecido: poliamida",
+      "Detalhes: gola alta e acabamentos em renda",
+    ],
+    featured: true,
+    colors: [
+      {
+        // Sem foto individual boa dessa cor (recorte da foto da arara
+        // ficava com o branco muito estourado/difícil de enxergar a peça)
+        // — usa a mesma foto geral da arara (com as 3 peças penduradas)
+        // que também é a capa do produto, em vez de uma galeria separada.
+        name: "Branco",
+        hex: "#f5f3ee",
+        code: "1990",
+        sizes: ["P", "M"],
+        images: ["assets/produtos/blusa-margot-1990-capa.jpg"],
+      },
+      {
+        name: "Preto",
+        hex: "#161616",
+        code: "1990",
+        sizes: ["M"],
+        images: ["assets/produtos/blusa-margot-1990-capa.jpg"],
+      },
+    ],
+  },
+  {
+    id: "blusa-bella-1991",
+    name: "Blusa Bella",
+    category: "Blusas",
+    price: 109.9,
+    promoPrice: null,
+    sizes: ["P", "M"],
+    description:
+      "Aquela básica nada óbvia que combina com tudo. A Blusa Bella é confeccionada em poliamida, com tecido duplo, modelagem ajustada ao corpo e decote frente única que valoriza o colo de forma feminina e moderna. Versátil e confortável, é perfeita para compor desde looks casuais com jeans até produções mais sofisticadas com alfaiataria, saias ou pantalonas.",
+    notes: [
+      "Tecido: poliamida com tecido duplo",
+      "Modelagem ajustada ao corpo, decote frente única",
+    ],
+    featured: true,
+    colors: [
+      {
+        name: "Rosa",
+        hex: "#f2b8c6",
+        code: "1991",
+        sizes: ["P", "M"],
+        images: [
+          "assets/produtos/blusa-bella-1991-rosa-1.jpg",
+          "assets/produtos/blusa-bella-1991-rosa-2.jpg",
+        ],
+      },
+      {
+        name: "Branco",
+        hex: "#f5f3ee",
+        code: "1991",
+        sizes: ["P", "M"],
+        images: [
+          "assets/produtos/blusa-bella-1991-branco-1.jpg",
+          "assets/produtos/blusa-bella-1991-branco-2.jpg",
+        ],
+      },
+      {
+        name: "Preto",
+        hex: "#161616",
+        code: "1991",
+        sizes: ["P", "M"],
+        images: ["assets/produtos/blusa-bella-1991-preto-1.jpg"],
+      },
+      {
+        name: "Amarelo",
+        hex: "#e9d27a",
+        code: "1991",
+        sizes: ["M"],
+        images: ["assets/produtos/blusa-bella-1991-amarelo-1.jpg"],
+      },
+    ],
+  },
   {
     id: "vestido-lili-1979",
     name: "Vestido Lili",
@@ -560,5 +751,5 @@ function getProductById(id) {
 }
 
 function getProductCoverImage(product) {
-  return product.colors[0].images[0];
+  return product.coverImage || product.colors[0].images[0];
 }

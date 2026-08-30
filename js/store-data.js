@@ -26,8 +26,7 @@ const STORE = {
 
   // Número de WhatsApp COM código do país e DDD, somente números.
   // Exemplo: 55 (Brasil) + 51 (DDD) + número = 5551999999999
-  // TODO: trocar pelo número real da loja
-  whatsappNumber: "5551999999999",
+  whatsappNumber: "5551999241237",
 
   // Mensagem padrão que abre já preenchida no WhatsApp
   whatsappDefaultMessage: "Olá! Vim pelo site da Novo Elemento e gostaria de saber mais 😊",
