@@ -74,6 +74,11 @@ const PRODUCTS = [
     id: "blusa-eloise-1987",
     name: "Blusa Éloise",
     category: "Blusas",
+    // Capa com a foto da modelo (pedido da cliente) — atenção: essa foto é
+    // da cor Branco, não da Creme (única cor vendida). Cliente confirmou
+    // que quer usar assim mesmo; a galeria do produto usa a foto da arara
+    // com a cor Creme correta.
+    coverImage: "assets/produtos/blusa-eloise-1987-capa.jpg",
     price: 217.9,
     promoPrice: null,
     sizes: ["P", "M"],
@@ -101,6 +106,10 @@ const PRODUCTS = [
     price: 147.9,
     promoPrice: null,
     sizes: [],
+    // Capa própria com a foto da arara (as 4 cores penduradas) — os
+    // recortes individuais por cor ficavam com um zoom exagerado (mesmo
+    // problema da Blusa Margot/Éloise, ver nota em getProductCoverImage).
+    coverImage: "assets/produtos/blusa-amelie-1988-capa.jpg",
     description:
       "Sofisticada e delicada na medida certa. A Blusa Amélie possui modelagem alongada e assimétrica, confeccionada em tecido acetinado com caimento leve e fluido. O acabamento em renda na barra traz transparência e um toque romântico à peça, deixando o look ainda mais elegante. Uma peça versátil que fica incrível tanto com jeans quanto com alfaiataria, podendo ser usada em produções mais casuais ou sofisticadas.",
     notes: [
@@ -114,28 +123,28 @@ const PRODUCTS = [
         hex: "#161616",
         code: "1988",
         sizes: ["G"],
-        images: ["assets/produtos/blusa-amelie-1988-preto-1.jpg"],
+        images: ["assets/produtos/blusa-amelie-1988-capa.jpg"],
       },
       {
         name: "Branco",
         hex: "#f5f3ee",
         code: "1988",
         sizes: ["P"],
-        images: ["assets/produtos/blusa-amelie-1988-branco-1.jpg"],
+        images: ["assets/produtos/blusa-amelie-1988-capa.jpg"],
       },
       {
         name: "Marrom",
         hex: "#5a3a2a",
         code: "1988",
         sizes: ["M"],
-        images: ["assets/produtos/blusa-amelie-1988-marrom-1.jpg"],
+        images: ["assets/produtos/blusa-amelie-1988-capa.jpg"],
       },
       {
         name: "Creme",
         hex: "#e8ddc4",
         code: "1988",
         sizes: ["P", "M"],
-        images: ["assets/produtos/blusa-amelie-1988-creme-1.jpg"],
+        images: ["assets/produtos/blusa-amelie-1988-capa.jpg"],
       },
     ],
   },
@@ -240,18 +249,23 @@ const PRODUCTS = [
         ],
       },
       {
+        // Sem foto individual no modelo pra essas 2 cores — o recorte
+        // estreito da foto da arara ficava com zoom exagerado no quadro
+        // da galeria (mesmo problema da Margot/Éloise/Amélie). Usa a foto
+        // da arara inteira (mostra também 2 tons de marrom que não são
+        // vendidos, mesma solução aprovada nos outros produtos).
         name: "Preto",
         hex: "#161616",
         code: "1991",
         sizes: ["P", "M"],
-        images: ["assets/produtos/blusa-bella-1991-preto-1.jpg"],
+        images: ["assets/produtos/blusa-bella-1991-preto-amarelo.jpg"],
       },
       {
         name: "Amarelo",
         hex: "#e9d27a",
         code: "1991",
         sizes: ["M"],
-        images: ["assets/produtos/blusa-bella-1991-amarelo-1.jpg"],
+        images: ["assets/produtos/blusa-bella-1991-preto-amarelo.jpg"],
       },
     ],
   },
