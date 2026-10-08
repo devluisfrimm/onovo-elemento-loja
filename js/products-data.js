@@ -18,6 +18,8 @@
                    daquela cor (veja `colors` abaixo) — a cor sobrescreve
                    este valor do produto quando presente.
     description -> descrição curta do produto (aparece na página da peça)
+    gender      -> (opcional) "masc" para aparecer na seção masculina
+                   (masculino.html). Sem este campo a peça é feminina.
     featured    -> true para destacar o produto na página inicial
     coverImage  -> (opcional) foto usada na vitrine do catálogo (grade da
                    home). Se não definir, usa automaticamente a 1ª foto da
@@ -757,11 +759,85 @@ const PRODUCTS = [
       },
     ],
   },
+
+  // ---------------- SEÇÃO MASCULINA (gender: "masc") ----------------
+  // Preço unitário R$119,90 e tamanhos P ao GG informados pelo cliente.
+  // Composição do tecido ainda não informada — descrições genéricas, sem
+  // citar marcas (as fotos mostram logos de terceiros).
+  {
+    id: "camiseta-essential",
+    gender: "masc",
+    name: "Camiseta Essential",
+    category: "Camisetas",
+    price: 119.9,
+    promoPrice: null,
+    sizes: ["P", "M", "G", "GG"],
+    description:
+      "Camiseta de gola redonda e manga curta, de modelagem reta e visual limpo, com pequeno detalhe bordado no peito. A básica que combina com tudo — do jeans à alfaiataria — e entra fácil em qualquer rotina.",
+    notes: ["Gola redonda e manga curta", "Pequeno detalhe bordado no peito"],
+    featured: true,
+    colors: [
+      {
+        name: "Bordô",
+        hex: "#7a1226",
+        images: ["assets/produtos/camiseta-essential-bordo-1.jpg"],
+      },
+      {
+        name: "Marinho",
+        hex: "#1c2a4a",
+        images: ["assets/produtos/camiseta-essential-marinho-1.jpg"],
+      },
+      {
+        name: "Branco",
+        hex: "#f5f3ee",
+        images: ["assets/produtos/camiseta-essential-branco-1.jpg"],
+      },
+    ],
+  },
+  {
+    id: "camiseta-signature",
+    gender: "masc",
+    name: "Camiseta Signature",
+    category: "Camisetas",
+    price: 119.9,
+    promoPrice: null,
+    sizes: ["P", "M", "G", "GG"],
+    description:
+      "Camiseta de gola redonda e manga curta, com estampa de logo em relevo tom sobre tom no peito. Visual urbano e sofisticado, pensado para quem gosta de uma peça básica com personalidade.",
+    notes: ["Gola redonda e manga curta", "Estampa de logo em relevo tom sobre tom"],
+    featured: true,
+    colors: [
+      {
+        name: "Branco",
+        hex: "#f5f3ee",
+        images: ["assets/produtos/camiseta-signature-branco-1.jpg"],
+      },
+      {
+        name: "Azul",
+        hex: "#23366b",
+        images: ["assets/produtos/camiseta-signature-azul-1.jpg"],
+      },
+      {
+        name: "Preto",
+        hex: "#161616",
+        images: ["assets/produtos/camiseta-signature-preto-1.jpg"],
+      },
+    ],
+  },
 ];
 
 // Atalhos usados pelo catálogo e pela página do produto — não precisa mexer aqui.
 function getProductById(id) {
   return PRODUCTS.find((p) => p.id === id);
+}
+
+// Peças sem `gender` são femininas (todo o catálogo original).
+function getProductGender(product) {
+  return product.gender === "masc" ? "masc" : "fem";
+}
+
+function getProductsByGender(gender) {
+  return PRODUCTS.filter((p) => getProductGender(p) === gender);
 }
 
 function getProductCoverImage(product) {

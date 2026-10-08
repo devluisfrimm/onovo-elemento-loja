@@ -64,12 +64,19 @@ function setupDescToggles(grid) {
   });
 }
 
+// Cada página de catálogo declara sua seção em <html data-gender="masc">;
+// sem o atributo é a seção feminina (index.html).
+function pageProducts() {
+  return getProductsByGender(document.documentElement.dataset.gender === "masc" ? "masc" : "fem");
+}
+
 function renderCatalog() {
   const grid = document.querySelector("[data-product-grid]");
   const filters = document.querySelector("[data-category-filters]");
   if (!grid) return;
 
-  const categories = ["Todos", ...new Set(PRODUCTS.map((p) => p.category))];
+  const products = pageProducts();
+  const categories = ["Todos", ...new Set(products.map((p) => p.category))];
 
   if (filters) {
     filters.innerHTML = categories
@@ -81,7 +88,7 @@ function renderCatalog() {
   }
 
   function paint(filter) {
-    const items = filter && filter !== "Todos" ? PRODUCTS.filter((p) => p.category === filter) : PRODUCTS;
+    const items = filter && filter !== "Todos" ? products.filter((p) => p.category === filter) : products;
     grid.innerHTML = items.map(productCardMarkup).join("") || `<p class="empty-state">Nenhum produto nesta categoria ainda.</p>`;
     setupDescToggles(grid);
   }
@@ -102,7 +109,7 @@ function renderCatalog() {
 function renderFeatured() {
   const grid = document.querySelector("[data-featured-grid]");
   if (!grid) return;
-  const items = PRODUCTS.filter((p) => p.featured);
+  const items = pageProducts().filter((p) => p.featured);
   grid.innerHTML = items.map(productCardMarkup).join("");
   setupDescToggles(grid);
 }

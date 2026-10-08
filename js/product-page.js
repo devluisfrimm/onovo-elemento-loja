@@ -163,12 +163,13 @@ function renderSizes() {
   }
 
   block.style.display = "block";
-  currentSize = sizes[0];
+  // Ao trocar de cor, mantém o tamanho já escolhido se ele existir na cor nova.
+  if (!sizes.includes(currentSize)) currentSize = sizes[0];
 
   options.innerHTML = sizes
     .map(
-      (size, i) => `
-        <button class="size-pill ${i === 0 ? "size-pill--active" : ""}" data-size="${size}">${size}</button>
+      (size) => `
+        <button class="size-pill ${size === currentSize ? "size-pill--active" : ""}" data-size="${size}">${size}</button>
       `
     )
     .join("");
@@ -206,6 +207,9 @@ function renderProduct() {
   }
 
   currentColor = currentProduct.colors[0];
+
+  // O tema e os links de "catálogo" seguem a seção da peça (feminino/masculino).
+  if (window.NE_GENDER) window.NE_GENDER.apply(getProductGender(currentProduct));
 
   document.title = `${currentProduct.name} — ${STORE.name}`;
   document.getElementById("pCategory").textContent = currentProduct.category;

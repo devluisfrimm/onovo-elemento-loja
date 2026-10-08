@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-gender="fem">
+<html lang="pt-BR" data-gender="masc">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Novo Elemento — Loja</title>
-<meta name="description" content="Loja Novo Elemento — moda com essência.">
+<title>Masculino — Novo Elemento</title>
+<meta name="description" content="Novo Elemento Masculino — camisetas essenciais para o dia a dia.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/swap-boot.js"></script>
@@ -13,7 +13,7 @@
 
 <header class="site-header">
   <nav class="nav">
-    <a href="index.html" class="nav-logo">
+    <a href="masculino.html" class="nav-logo">
       <span class="logo-shine">
         <img src="assets/logo.png" alt="Novo Elemento" class="logo-img">
         <div class="logo-fallback">
@@ -24,7 +24,7 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="index.html" class="active">Catálogo</a></li>
+      <li><a href="masculino.html" class="active">Catálogo</a></li>
       <li><a href="sobre.html">Fale Conosco</a></li>
     </ul>
 
@@ -41,51 +41,39 @@
 
   <div class="nav-mobile">
     <ul>
-      <li><a href="index.html">Catálogo</a></li>
+      <li><a href="masculino.html">Catálogo</a></li>
       <li><a href="sobre.html">Fale Conosco</a></li>
       <li><a href="carrinho.html">Carrinho</a></li>
     </ul>
   </div>
 </header>
 
-<section class="hero-carousel">
-  <div class="hero-carousel__track">
-    <img src="assets/carrossel/carrossel-01.jpg" alt="" class="hero-carousel__slide">
-    <img src="assets/carrossel/carrossel-02.jpg" alt="" class="hero-carousel__slide">
-    <img src="assets/carrossel/carrossel-03.jpg" alt="" class="hero-carousel__slide">
-    <img src="assets/carrossel/carrossel-04.jpg" alt="" class="hero-carousel__slide">
-    <img src="assets/carrossel/carrossel-05.jpg" alt="" class="hero-carousel__slide">
-    <img src="assets/carrossel/carrossel-06.jpg" alt="" class="hero-carousel__slide">
-    <img src="assets/carrossel/carrossel-07.jpg" alt="" class="hero-carousel__slide">
-  </div>
-  <div class="hero-carousel__overlay"></div>
-  <div class="hero-carousel__caption">
-    <span class="hero-carousel__line"></span>
-    <h2>Nova Coleção</h2>
-    <span class="hero-carousel__line"></span>
+<section class="hero-masc">
+  <img src="assets/produtos/camiseta-signature-branco-1.jpg" alt="Camiseta Signature branca">
+  <img src="assets/produtos/camiseta-signature-azul-1.jpg" alt="Camiseta Signature azul">
+  <img src="assets/produtos/camiseta-signature-preto-1.jpg" alt="Camiseta Signature preta">
+  <div class="hero-masc__overlay"></div>
+  <div class="hero-masc__caption">
+    <span class="hero-masc__line"></span>
+    <h2>Coleção Masculina</h2>
+    <p>Camisetas essenciais para o dia a dia.</p>
+    <a href="#catalogo" class="btn btn--gold">Ver camisetas</a>
+    <span class="hero-masc__line"></span>
   </div>
 </section>
 
 <section class="hero">
-  <h1>Peças atemporais para o seu dia a dia</h1>
-  <p>Um catálogo pensado com cuidado — tecidos naturais, cores suaves e detalhes em dourado.</p>
+  <h1>Básicos com personalidade</h1>
+  <p>Peças versáteis em cores que combinam com tudo — visual limpo para compor looks do dia a dia.</p>
   <div class="hero__actions">
     <a href="#catalogo" class="btn btn--gold">Ver Catálogo</a>
-    <a href="masculino.html" class="btn btn--outline" data-gender-link="masc">Coleção Masculina</a>
+    <a href="index.html" class="btn btn--outline" data-gender-link="fem">Coleção Feminina</a>
     <a href="sobre.html" class="btn btn--outline">Fale Conosco</a>
   </div>
   <p class="hero__notice">Peças limitadas — consulte disponibilidade.</p>
 </section>
 
-<section class="section">
-  <div class="container">
-    <h2 class="section-title reveal">Destaques</h2>
-    <p class="section-subtitle reveal">Seleção especial dos produtos em destaque.</p>
-    <div class="product-grid" data-featured-grid></div>
-  </div>
-</section>
-
-<section class="section section--linen" id="catalogo">
+<section class="section" id="catalogo">
   <div class="container">
     <h2 class="section-title reveal">Catálogo Completo</h2>
     <p class="section-subtitle reveal">Filtre por categoria para encontrar a peça ideal.</p>
