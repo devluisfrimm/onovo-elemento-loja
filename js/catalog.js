@@ -24,6 +24,9 @@ function productCardMarkup(product) {
        <span class="product-card__price product-card__price--now">${formatPrice(product.promoPrice)}</span>`
     : `<span class="product-card__price product-card__price--now">${formatPrice(product.price)}</span>`;
 
+  const effective = hasPromo ? product.promoPrice : product.price;
+  const pixMarkup = pixPriceMarkup(effective);
+
   return `
     <a class="product-card" href="produto.html?id=${encodeURIComponent(product.id)}" data-category="${product.category}">
       ${productImageMarkup(product)}
@@ -34,7 +37,7 @@ function productCardMarkup(product) {
         <button type="button" class="product-card__more" data-toggle-desc>
           Ler mais <span class="product-card__more-arrow">⌄</span>
         </button>
-        <div class="product-card__prices">${priceMarkup}</div>
+        <div class="product-card__prices">${priceMarkup}${pixMarkup}</div>
         <span class="product-card__cta">Ver peça</span>
       </div>
     </a>

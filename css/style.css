@@ -119,9 +119,14 @@
   box-sizing: border-box;
 }
 
+/* Sem scroll lateral (o menu mobile fica fora da tela). Usa "clip" e não
+   "hidden" no <body>: clip corta o excesso SEM criar contêiner de rolagem —
+   com "hidden" o cabeçalho sticky pararia de acompanhar a página. O <html>
+   mantém "hidden" só como reserva pra navegadores sem suporte a clip. */
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -130,9 +135,10 @@ body {
   color: var(--color-text);
   background: var(--color-white);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
+html.no-scroll,
 body.no-scroll {
   overflow: hidden;
 }
@@ -1862,4 +1868,104 @@ html[data-arrived] .hero-masc__caption {
 .hero-carousel__caption h2,
 .hero-masc__caption h2 {
   font-family: var(--font-heading-caps);
+}
+
+/* =========================================================
+   FAIXA PROMOCIONAL + PREÇO NO PIX
+   ========================================================= */
+
+.promo-bar {
+  position: relative;
+  overflow: hidden;
+  padding: 9px 16px;
+  background: var(--color-text);
+  color: #f3dfa6;
+  text-align: center;
+  font-family: var(--font-body-caps);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* brilho dourado que passa pela faixa de tempos em tempos */
+.promo-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 35%, rgba(255, 236, 176, 0.3) 50%, transparent 65%);
+  transform: translateX(-100%);
+  animation: promo-shine 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes promo-shine {
+  0%,
+  55% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-bar {
+    padding: 8px 12px;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-bar::after {
+    display: none;
+  }
+}
+
+/* "R$ X no Pix · 10% OFF" nos cards e na página da peça */
+.product-card__prices,
+.product-info__prices {
+  flex-wrap: wrap;
+}
+
+.product-card__pix {
+  flex-basis: 100%;
+  font-size: 0.78rem;
+  color: var(--color-gold-dark);
+}
+
+.product-card__pix strong {
+  font-weight: 600;
+}
+
+/* bloco "No Pix" no resumo do carrinho */
+.cart-summary__pix {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius);
+  background: rgba(198, 161, 91, 0.1);
+  color: var(--color-gold-dark);
+}
+
+.cart-summary__pix strong {
+  display: block;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+.cart-summary__pix small {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--color-text-light);
+}
+
+.cart-summary__pix-total {
+  font-size: 1.2rem;
+  font-weight: 600;
 }

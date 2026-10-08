@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       toggle.classList.toggle("nav-toggle--open", isOpen);
       toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
       document.body.classList.toggle("no-scroll", isOpen);
+      document.documentElement.classList.toggle("no-scroll", isOpen);
     });
 
     mobileMenu.querySelectorAll("a").forEach((link) => {
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mobileMenu.classList.remove("nav-mobile--open");
         toggle.classList.remove("nav-toggle--open");
         document.body.classList.remove("no-scroll");
+        document.documentElement.classList.remove("no-scroll");
       });
     });
   }

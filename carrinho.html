@@ -10,6 +10,8 @@
 </head>
 <body>
 
+<div class="promo-bar" role="note"><span>&#10022; 10% OFF EM TODO O SITE PARA PAGAMENTOS VIA PIX &#10022;</span></div>
+
 <header class="site-header">
   <nav class="nav">
     <a href="index.html" class="nav-logo">
@@ -77,14 +79,25 @@
           <span>Total</span>
           <span data-cart-total>R$ 0,00</span>
         </div>
-        <button type="button" class="btn btn--gold btn--block" data-checkout-mercadopago>
-          Pagar com Mercado Pago
+        <div class="cart-summary__pix">
+          <div>
+            <strong data-pix-label>No Pix</strong>
+            <small data-pix-save></small>
+          </div>
+          <span class="cart-summary__pix-total" data-cart-pix-total>R$ 0,00</span>
+        </div>
+        <button type="button" class="btn btn--gold btn--block" data-checkout-pix>
+          Pagar com Pix
+        </button>
+        <p class="mp-error" data-pix-error></p>
+        <button type="button" class="btn btn--outline btn--block" data-checkout-mercadopago>
+          Pagar com cartão ou boleto
         </button>
         <p class="mp-error" data-mp-error></p>
         <a href="#" class="btn btn--whatsapp btn--block" data-checkout-whatsapp target="_blank" rel="noopener">
           Finalizar pedido no WhatsApp
         </a>
-        <p class="cart-summary__note">Prefere combinar pagamento e entrega direto com a gente? Finalize pelo WhatsApp. Ou pague on-line com cartão, Pix ou boleto pelo Mercado Pago.</p>
+        <p class="cart-summary__note">O desconto vale para pagamentos via Pix. Cartão e boleto são pagos pelo Mercado Pago pelo valor cheio. Prefere combinar pagamento e entrega direto com a gente? Finalize pelo WhatsApp.</p>
       </div>
     </div>
   </div>

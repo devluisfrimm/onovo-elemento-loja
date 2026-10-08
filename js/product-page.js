@@ -217,10 +217,11 @@ function renderProduct() {
   document.getElementById("pDesc").textContent = currentProduct.description;
 
   const hasPromo = currentProduct.promoPrice && currentProduct.promoPrice < currentProduct.price;
-  document.getElementById("pPrices").innerHTML = hasPromo
+  const pixBase = hasPromo ? currentProduct.promoPrice : currentProduct.price;
+  document.getElementById("pPrices").innerHTML = (hasPromo
     ? `<span class="product-card__price product-card__price--old">${formatPrice(currentProduct.price)}</span>
        <span class="product-card__price product-card__price--now">${formatPrice(currentProduct.promoPrice)}</span>`
-    : `<span class="product-card__price product-card__price--now">${formatPrice(currentProduct.price)}</span>`;
+    : `<span class="product-card__price product-card__price--now">${formatPrice(currentProduct.price)}</span>`) + pixPriceMarkup(pixBase);
 
   renderGallery();
   renderColorSwatches();

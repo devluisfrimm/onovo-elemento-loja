@@ -31,6 +31,12 @@ const STORE = {
   // Mensagem padrão que abre já preenchida no WhatsApp
   whatsappDefaultMessage: "Olá! Vim pelo site da Novo Elemento e gostaria de saber mais 😊",
 
+  // Desconto (%) para pagamentos via Pix, em todo o site. Usado nos preços
+  // "no Pix", no carrinho, no WhatsApp e no checkout do Mercado Pago (o
+  // servidor lê este mesmo valor). A faixa do topo é texto fixo nos HTMLs
+  // (classe "promo-bar"): se mudar o %, ajuste também a faixa.
+  pixDiscountPercent: 10,
+
   // Redes sociais (deixe "" para ocultar o ícone no rodapé)
   social: {
     instagram: "https://instagram.com/onovo.elemento",

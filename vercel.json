@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/create-preference.js": {
+      "includeFiles": "js/{store-data,products-data}.js"
+    }
+  }
+}

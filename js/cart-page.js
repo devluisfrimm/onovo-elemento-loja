@@ -73,6 +73,23 @@ function renderCartPage() {
   const totalEl = document.querySelector("[data-cart-total]");
   if (totalEl) totalEl.textContent = formatPrice(cartTotal());
 
+  const pct = Number(STORE.pixDiscountPercent) || 0;
+  const pixBlock = document.querySelector(".cart-summary__pix");
+  const pixBtn = document.querySelector("[data-checkout-pix]");
+  if (pixBlock) pixBlock.style.display = pct ? "flex" : "none";
+  if (pixBtn) {
+    pixBtn.style.display = pct ? "" : "none";
+    pixBtn.textContent = pct ? `Pagar com Pix — ${pct}% OFF` : "Pagar com Pix";
+  }
+  if (pct) {
+    const label = document.querySelector("[data-pix-label]");
+    if (label) label.textContent = `No Pix · ${pct}% OFF`;
+    const pixTotalEl = document.querySelector("[data-cart-pix-total]");
+    if (pixTotalEl) pixTotalEl.textContent = formatPrice(cartPixTotal());
+    const saveEl = document.querySelector("[data-pix-save]");
+    if (saveEl) saveEl.textContent = `Você economiza ${formatPrice(cartTotal() - cartPixTotal())}`;
+  }
+
   const checkoutBtn = document.querySelector("[data-checkout-whatsapp]");
   if (checkoutBtn) {
     checkoutBtn.href = buildWhatsappOrderLink();
@@ -122,6 +139,52 @@ async function payWithMercadoPago() {
   }
 }
 
+// Pix com desconto: manda só id/quantidade/cor/tamanho. O servidor lê o preço
+// no catálogo e aplica o desconto — o navegador não decide o valor.
+async function payWithPix() {
+  const cart = getCart();
+  if (!cart.length) return;
+
+  const btn = document.querySelector("[data-checkout-pix]");
+  const errorEl = document.querySelector("[data-pix-error]");
+  if (errorEl) errorEl.textContent = "";
+
+  const originalLabel = btn ? btn.textContent : "";
+  if (btn) {
+    btn.textContent = "Preparando pagamento…";
+    btn.setAttribute("aria-busy", "true");
+  }
+
+  try {
+    const items = cart.map((item) => ({
+      id: item.id,
+      quantity: item.qty,
+      color: item.color,
+      size: item.size,
+    }));
+
+    const response = await fetch("/api/create-preference", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ method: "pix", items }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.init_point) {
+      throw new Error(data.error || "Não foi possível iniciar o pagamento no Pix.");
+    }
+
+    window.location.href = data.init_point;
+  } catch (err) {
+    if (errorEl) errorEl.textContent = err.message || "Erro ao conectar com o Mercado Pago. Tente novamente.";
+    if (btn) {
+      btn.textContent = originalLabel;
+      btn.removeAttribute("aria-busy");
+    }
+  }
+}
+
 function showCartStatusFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const status = params.get("status");
@@ -147,6 +210,8 @@ function buildWhatsappOrderLink() {
     text += `• ${item.qty}x ${item.name}${details ? " (" + details + ")" : ""} — ${formatPrice(item.price * item.qty)}\n`;
   });
   text += `\nTotal: ${formatPrice(cartTotal())}`;
+  const pct = Number(STORE.pixDiscountPercent) || 0;
+  if (pct) text += `\nTotal no Pix (${pct}% OFF): ${formatPrice(cartPixTotal())}`;
   return `https://wa.me/${STORE.whatsappNumber}?text=${encodeURIComponent(text)}`;
 }
 
@@ -157,5 +222,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const mpBtn = document.querySelector("[data-checkout-mercadopago]");
   if (mpBtn) {
     mpBtn.addEventListener("click", payWithMercadoPago);
+  }
+
+  const pixPayBtn = document.querySelector("[data-checkout-pix]");
+  if (pixPayBtn) {
+    pixPayBtn.addEventListener("click", payWithPix);
   }
 });
