@@ -118,7 +118,7 @@ module.exports = async function handler(req, res) {
   // Pix só existe com desconto: o checkout "Pix" mostra apenas Pix, e o checkout
   // de cartão/boleto esconde o Pix (senão alguém pagaria Pix pelo valor cheio).
   const paymentMethods = isPix
-    ? { excluded_payment_types: NON_PIX_TYPES.map((id) => ({ id })), default_payment_method_id: "pix" }
+    ? { excluded_payment_types: NON_PIX_TYPES.map((id) => ({ id })) }
     : { excluded_payment_types: [{ id: "bank_transfer" }] };
 
   try {
