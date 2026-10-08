@@ -114,7 +114,7 @@ function renderFeatured() {
   setupDescToggles(grid);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderFeatured();
-  renderCatalog();
-});
+// Script no fim do <body>: as grades acima já existem. Renderiza já, antes
+// da primeira pintura, em vez de esperar o DOMContentLoaded.
+renderFeatured();
+renderCatalog();

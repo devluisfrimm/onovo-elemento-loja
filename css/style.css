@@ -5,6 +5,96 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&family=Alex+Brush&display=swap");
 
+/* Fontes de reserva com as MESMAS métricas das fontes da loja (Poppins e
+   Playfair Display): enquanto a fonte real não chega, o texto ocupa o mesmo
+   espaço — assim não há "pulo" de layout quando ela entra (importante logo
+   após a troca Feminino/Masculino). Valores medidos no navegador:
+   size-adjust = largura média ÷ largura da fonte local; ascent/descent/
+   line-gap = métrica da fonte real ÷ size-adjust. */
+@font-face {
+  font-family: "Poppins Fallback";
+  font-weight: 300;
+  src: local("Arial"), local("Liberation Sans"), local("Helvetica");
+  size-adjust: 108.65%;
+  ascent-override: 96.64%;
+  descent-override: 32.21%;
+  line-gap-override: 9.2%;
+}
+@font-face {
+  font-family: "Poppins Fallback";
+  font-weight: 400;
+  src: local("Arial"), local("Liberation Sans"), local("Helvetica");
+  size-adjust: 113.64%;
+  ascent-override: 92.4%;
+  descent-override: 30.8%;
+  line-gap-override: 8.8%;
+}
+@font-face {
+  font-family: "Poppins Fallback";
+  font-weight: 500;
+  src: local("Arial"), local("Liberation Sans"), local("Helvetica");
+  size-adjust: 110.26%;
+  ascent-override: 95.23%;
+  descent-override: 31.74%;
+  line-gap-override: 9.07%;
+}
+@font-face {
+  font-family: "Poppins Fallback";
+  font-weight: 600 900;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("Arial");
+  size-adjust: 104.77%;
+  ascent-override: 100.22%;
+  descent-override: 33.41%;
+  line-gap-override: 9.54%;
+}
+/* Variante para textos em CAIXA ALTA: as maiúsculas têm outra proporção de
+   largura (~0,95) que o texto misto (~1,13), então precisam de ajuste próprio. */
+@font-face {
+  font-family: "Poppins Fallback Caps";
+  font-weight: 400;
+  src: local("Arial"), local("Liberation Sans"), local("Helvetica");
+  size-adjust: 94.89%;
+  ascent-override: 110.65%;
+  descent-override: 36.88%;
+  line-gap-override: 10.54%;
+}
+@font-face {
+  font-family: "Poppins Fallback Caps";
+  font-weight: 500 599;
+  src: local("Arial"), local("Liberation Sans"), local("Helvetica");
+  size-adjust: 96.55%;
+  ascent-override: 108.76%;
+  descent-override: 36.25%;
+  line-gap-override: 10.36%;
+}
+@font-face {
+  font-family: "Playfair Fallback Caps";
+  font-weight: 600 900;
+  src: local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Liberation Serif Bold"), local("Times New Roman");
+  size-adjust: 95.62%;
+  ascent-override: 113.16%;
+  descent-override: 26.25%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Playfair Fallback";
+  font-weight: 100 599;
+  src: local("Times New Roman"), local("Liberation Serif"), local("Tinos"), local("Times");
+  size-adjust: 111.7%;
+  ascent-override: 96.87%;
+  descent-override: 22.47%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Playfair Fallback";
+  font-weight: 600 900;
+  src: local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Liberation Serif Bold"), local("Times New Roman");
+  size-adjust: 106.39%;
+  ascent-override: 101.7%;
+  descent-override: 23.59%;
+  line-gap-override: 0%;
+}
+
 :root {
   --color-white: #ffffff;
   --color-linen: #f5efe3;
@@ -15,8 +105,10 @@
   --color-text-light: #766c5c;
   --color-border: #e3d8c2;
 
-  --font-heading: "Playfair Display", serif;
-  --font-body: "Poppins", sans-serif;
+  --font-heading: "Playfair Display", "Playfair Fallback", serif;
+  --font-body: "Poppins", "Poppins Fallback", sans-serif;
+  --font-body-caps: "Poppins", "Poppins Fallback Caps", sans-serif;
+  --font-heading-caps: "Playfair Display", "Playfair Fallback Caps", serif;
 
   --container: 1180px;
   --radius: 4px;
@@ -1574,7 +1666,8 @@ html[data-gender="masc"] {
   transition: transform 0.7s cubic-bezier(0.65, 0, 0.25, 1);
 }
 
-.gender-switch[data-gender="masc"] .gender-switch__thumb {
+.gender-switch[data-gender="masc"] .gender-switch__thumb,
+html[data-gender="masc"] .gender-switch:not([data-gender]) .gender-switch__thumb {
   transform: translateX(100%);
 }
 
@@ -1592,7 +1685,9 @@ html[data-gender="masc"] {
 }
 
 .gender-switch[data-gender="fem"] [data-gender-link="fem"],
-.gender-switch[data-gender="masc"] [data-gender-link="masc"] {
+.gender-switch[data-gender="masc"] [data-gender-link="masc"],
+html[data-gender="fem"] .gender-switch:not([data-gender]) [data-gender-link="fem"],
+html[data-gender="masc"] .gender-switch:not([data-gender]) [data-gender-link="masc"] {
   color: var(--color-white);
 }
 
@@ -1747,4 +1842,24 @@ html[data-arrived] .hero-masc__caption {
   .gender-switch__thumb {
     transition: none;
   }
+}
+
+/* Textos em CAIXA ALTA usam a fonte de reserva calibrada pra maiúsculas
+   (ver @font-face "... Fallback Caps" no topo). */
+.btn,
+.nav-links a,
+.hero__eyebrow,
+.product-card__category,
+.product-card__more,
+.product-card__cta,
+.product-info__label,
+.footer-heading,
+.gender-switch__opt,
+.logo-fallback span {
+  font-family: var(--font-body-caps);
+}
+
+.hero-carousel__caption h2,
+.hero-masc__caption h2 {
+  font-family: var(--font-heading-caps);
 }

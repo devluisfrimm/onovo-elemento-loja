@@ -32,6 +32,15 @@
     }
     root.setAttribute("data-arrived", "1");
     root.setAttribute("data-fresh", "1");
+    // Só nesta chegada: segura a primeira pintura até o fim do <body>
+    // (marcador #swap-ready), quando js/transition.js e catalog.js já
+    // deixaram a página igual à camada de transição. Chrome/Edge 124+;
+    // nos demais navegadores é ignorado sem efeito colateral.
+    var expect = document.createElement("link");
+    expect.rel = "expect";
+    expect.href = "#swap-ready";
+    expect.setAttribute("blocking", "render");
+    document.head.appendChild(expect);
     if (info.mode === "veil") {
       var style = document.createElement("style");
       style.id = "swap-boot-style";

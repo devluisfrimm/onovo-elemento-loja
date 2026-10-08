@@ -569,10 +569,16 @@
     }
   });
 
+  // O script fica no fim do <body>: o DOM acima já existe, então tudo roda
+  // ANTES da primeira pintura — a página real nasce idêntica à camada de
+  // transição (seletor no lugar, reveals/carrossel já no estado certo).
+  buildBar();
+  applyGender(currentGender);
+  onArrival();
+
+  // footer.js monta o rodapé no DOMContentLoaded: refaz os links dele.
   document.addEventListener("DOMContentLoaded", function () {
-    buildBar();
     applyGender(currentGender);
-    onArrival();
   });
 
   // Em páginas de catálogo, pré-carrega a outra seção assim que a página assenta.
