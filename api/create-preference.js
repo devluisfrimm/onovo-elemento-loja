@@ -18,8 +18,10 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
-// Tipos de pagamento do Mercado Pago. O Pix é "bank_transfer".
-const NON_PIX_TYPES = ["credit_card", "debit_card", "ticket", "atm", "prepaid_card", "account_money"];
+// Tipos de pagamento do Mercado Pago. O Pix é "bank_transfer". O saldo da conta
+// Mercado Pago ("account_money") NÃO pode ser excluído (a API recusa), então
+// quem tem saldo ainda pode usá-lo no checkout do Pix com desconto.
+const NON_PIX_TYPES = ["credit_card", "debit_card", "ticket", "atm", "prepaid_card"];
 
 // Lê catálogo e dados da loja dos mesmos arquivos que o site usa (fonte única).
 function loadCatalog() {
