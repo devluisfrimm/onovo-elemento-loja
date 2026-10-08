@@ -75,6 +75,14 @@ Qualquer serviço de hospedagem de arquivos estáticos funciona (ex: Hostinger, 
 
 **Site no ar no domínio definitivo:** https://onovoelemento.com.br (migração concluída em 2026-08-18 — domínio `.com.br` registrado e apontado na Vercel). O link antigo (https://onovo-elemento-loja.vercel.app) continua funcionando também, aponta pro mesmo projeto/deploy.
 
+## Desconto de 10% no Pix
+
+- Valor em `STORE.pixDiscountPercent` (`js/store-data.js`). Muda o percentual nos preços "no Pix", no carrinho, no WhatsApp **e no servidor** (a function lê o mesmo arquivo). A faixa do topo (`<div class="promo-bar">` nos 6 HTMLs) é texto fixo: se mudar o %, ajuste também a faixa.
+- **Botão "Pagar com Pix"** (carrinho): `api/create-preference.js` recebe só `{id, quantity, color, size}`, lê o preço no catálogo (`js/products-data.js`, incluído no bundle por `vercel.json`) e aplica o desconto — o navegador não decide o valor. O checkout fica restrito ao Pix.
+- **Botão "Pagar com cartão ou boleto"**: valor cheio, com o Pix escondido (senão alguém pagaria Pix pelo valor cheio).
+- Limitações do Mercado Pago: o saldo da conta MP (`account_money`) não pode ser excluído, então quem tem saldo pode usá-lo no checkout do Pix; e o `default_payment_method_id` não pode ser combinado com a lista de exclusão.
+- O botão de cartão/boleto ainda confia no preço enviado pelo navegador (comportamento antigo): vale trocar pelo mesmo cálculo no servidor.
+
 ## Pagamento (Mercado Pago) — ativo em produção
 
 Checkout via **Mercado Pago** (Checkout Pro), com o botão "Finalizar pedido no WhatsApp" mantido como alternativa.
