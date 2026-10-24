@@ -761,9 +761,10 @@ const PRODUCTS = [
   },
 
   // ---------------- SEÇÃO MASCULINA (gender: "masc") ----------------
-  // Preço unitário R$119,90 e tamanhos P ao GG informados pelo cliente.
-  // Composição do tecido ainda não informada — descrições genéricas, sem
-  // citar marcas (as fotos mostram logos de terceiros).
+  // Fotos reais (HEIC do iPhone, convertidas pra sRGB e sem GPS) em out/2026.
+  // As fotos antigas (geradas por IA) só ficam no banner de masculino.html.
+  // Composição do tecido da camiseta ainda não informada — descrição genérica,
+  // sem citar marcas (as fotos mostram logos de terceiros).
   {
     id: "camiseta-essential",
     gender: "masc",
@@ -779,48 +780,50 @@ const PRODUCTS = [
     colors: [
       {
         name: "Bordô",
-        hex: "#7a1226",
-        images: ["assets/produtos/camiseta-essential-bordo-1.jpg"],
+        hex: "#a3182d",
+        images: [
+          "assets/produtos/camiseta-bordo-1.jpg",
+          "assets/produtos/camiseta-bordo-2.jpg",
+        ],
       },
       {
         name: "Marinho",
-        hex: "#1c2a4a",
-        images: ["assets/produtos/camiseta-essential-marinho-1.jpg"],
+        hex: "#2a2d4a",
+        images: ["assets/produtos/camiseta-marinho-1.jpg"],
       },
       {
-        name: "Branco",
-        hex: "#f5f3ee",
-        images: ["assets/produtos/camiseta-essential-branco-1.jpg"],
+        name: "Off-white",
+        hex: "#ebdfcd",
+        images: [
+          "assets/produtos/camiseta-offwhite-1.jpg",
+          "assets/produtos/camiseta-offwhite-2.jpg",
+          "assets/produtos/camiseta-offwhite-3.jpg",
+        ],
       },
     ],
   },
   {
-    id: "camiseta-signature",
+    id: "calca-armani",
     gender: "masc",
-    name: "Camiseta Signature",
-    category: "Camisetas",
-    price: 119.9,
+    name: "Calça Armani",
+    category: "Calças",
+    price: 269.9,
     promoPrice: null,
-    sizes: ["P", "M", "G", "GG"],
+    // Numeração 38 ao 48 informada pelo cliente (de 2 em 2, grade padrão masculina).
+    sizes: ["38", "40", "42", "44", "46", "48"],
     description:
-      "Camiseta de gola redonda e manga curta, com estampa de logo em relevo tom sobre tom no peito. Visual urbano e sofisticado, pensado para quem gosta de uma peça básica com personalidade.",
-    notes: ["Gola redonda e manga curta", "Estampa de logo em relevo tom sobre tom"],
+      "Calça jeans masculina em lavagem escura, confeccionada em material premium. Peça versátil, com ótimo caimento, que combina com camisetas, camisas e looks do dia a dia.",
+    notes: ["Jeans em tom escuro", "Material premium", "Numeração do 38 ao 48"],
     featured: true,
     colors: [
       {
-        name: "Branco",
-        hex: "#f5f3ee",
-        images: ["assets/produtos/camiseta-signature-branco-1.jpg"],
-      },
-      {
-        name: "Azul",
-        hex: "#23366b",
-        images: ["assets/produtos/camiseta-signature-azul-1.jpg"],
-      },
-      {
-        name: "Preto",
-        hex: "#161616",
-        images: ["assets/produtos/camiseta-signature-preto-1.jpg"],
+        name: "Jeans escuro",
+        hex: "#2b4468",
+        images: [
+          "assets/produtos/calca-armani-1.jpg",
+          "assets/produtos/calca-armani-2.jpg",
+          "assets/produtos/calca-armani-3.jpg",
+        ],
       },
     ],
   },

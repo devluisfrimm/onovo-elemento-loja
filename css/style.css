@@ -1784,11 +1784,44 @@ html[data-arrived] .hero-masc__caption {
   background: var(--color-text);
 }
 
-.hero-masc img {
+/* Banner = 3 painéis; cada um alterna (crossfade) fotos novas e antigas, com
+   tempos defasados (--o) pra mescla ficar viva. 4 fotos × 4,5s = ciclo de 18s.
+   A foto 0 já começa visível (atraso negativo); a troca é simétrica: uma entra
+   enquanto a outra sai. */
+.hero-masc__panel {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.hero-masc__slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 16%;
+  opacity: 0;
+  animation: hero-masc-fade 18s linear infinite;
+  animation-delay: calc(var(--k) * 4.5s - 0.6s - var(--o));
+}
+
+@keyframes hero-masc-fade {
+  0% {
+    opacity: 0;
+  }
+  3.33% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  28.33% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .hero-masc__overlay {
@@ -1838,8 +1871,8 @@ html[data-arrived] .hero-masc__caption {
     grid-template-columns: 1fr;
     height: min(62vh, 520px);
   }
-  .hero-masc img:nth-child(1),
-  .hero-masc img:nth-child(3) {
+  .hero-masc__panel:nth-child(1),
+  .hero-masc__panel:nth-child(3) {
     display: none;
   }
 }
@@ -1847,6 +1880,14 @@ html[data-arrived] .hero-masc__caption {
 @media (prefers-reduced-motion: reduce) {
   .gender-switch__thumb {
     transition: none;
+  }
+
+  .hero-masc__slide {
+    animation: none;
+  }
+
+  .hero-masc__slide:first-child {
+    opacity: 1;
   }
 }
 

@@ -75,6 +75,13 @@ Qualquer serviço de hospedagem de arquivos estáticos funciona (ex: Hostinger, 
 
 **Site no ar no domínio definitivo:** https://onovoelemento.com.br (migração concluída em 2026-08-18 — domínio `.com.br` registrado e apontado na Vercel). O link antigo (https://onovo-elemento-loja.vercel.app) continua funcionando também, aponta pro mesmo projeto/deploy.
 
+## Seção masculina
+
+- Página `masculino.html` (catálogo próprio). Peça masculina = produto com `gender: "masc"` em `js/products-data.js`; sem esse campo é feminina. O seletor Feminino | Masculino e a troca com degradê dourado ficam em `js/transition.js` (+ `js/swap-boot.js`).
+- **Banner** (topo de `masculino.html`): 3 painéis, cada um alterna 4 fotos em crossfade (`.hero-masc__slide`, ciclo de 18s, painéis defasados). Mistura fotos novas (`assets/produtos/banner-masc-nova-*.jpg`, 900×1200) e antigas (`camiseta-essential-*`/`camiseta-signature-*`, geradas por IA, que não são mais usadas no catálogo). Pra trocar uma foto, troque o `src` do `<img>`; no celular só o painel do meio aparece.
+- **Fotos novas vêm do iPhone em HEIC (Display P3, com GPS).** Antes de publicar: converter pra sRGB e salvar sem metadados (o GPS revela onde a foto foi tirada). Tamanho usado: 1200×1600 (catálogo) e 900×1200 (banner), JPEG q≈84.
+- Camiseta Essential: Bordô, Marinho, Off-white. Calça Armani: tamanhos 38–48 (de 2 em 2), R$ 269,90. Descrições genéricas, sem citar marcas.
+
 ## Desconto de 10% no Pix
 
 - Valor em `STORE.pixDiscountPercent` (`js/store-data.js`). Muda o percentual nos preços "no Pix", no carrinho, no WhatsApp **e no servidor** (a function lê o mesmo arquivo). A faixa do topo (`<div class="promo-bar">` nos 6 HTMLs) é texto fixo: se mudar o %, ajuste também a faixa.

@@ -410,7 +410,15 @@
       .then(function () {
         var anim = null;
         try {
-          if (mode === "frame") anim = main.frame.contentWindow.performance.now();
+          if (mode === "frame") {
+            // Tempo REAL das animações do banner na camada (elas nascem na 1ª
+            // pintura, não na navegação) — a página nova continua dali.
+            var fd = main.frame.contentDocument;
+            var hero = fd.getAnimations().filter(function (a) {
+              return a.animationName && a.animationName.indexOf("hero-") === 0 && typeof a.currentTime === "number";
+            })[0];
+            anim = hero ? hero.currentTime : main.frame.contentWindow.performance.now();
+          }
         } catch (e) {}
         try {
           sessionStorage.setItem(
