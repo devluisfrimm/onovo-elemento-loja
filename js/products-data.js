@@ -803,6 +803,37 @@ const PRODUCTS = [
     ],
   },
   {
+    id: "camiseta-signature",
+    gender: "masc",
+    name: "Camiseta Signature",
+    category: "Camisetas",
+    price: 119.9,
+    promoPrice: null,
+    sizes: ["P", "M", "G", "GG"],
+    description:
+      "Camiseta de gola redonda e manga curta, com estampa de logo em relevo tom sobre tom no peito. Visual urbano e sofisticado, pensado para quem gosta de uma peça básica com personalidade.",
+    notes: ["Gola redonda e manga curta", "Estampa de logo em relevo tom sobre tom"],
+    featured: true,
+    // Uma foto por cor (a azul é a capa da vitrine; as demais aparecem ao trocar de cor).
+    colors: [
+      {
+        name: "Azul",
+        hex: "#23366b",
+        images: ["assets/produtos/camiseta-signature-azul-1.jpg"],
+      },
+      {
+        name: "Preto",
+        hex: "#161616",
+        images: ["assets/produtos/camiseta-signature-preto-1.jpg"],
+      },
+      {
+        name: "Branco",
+        hex: "#f5f3ee",
+        images: ["assets/produtos/camiseta-signature-branco-1.jpg"],
+      },
+    ],
+  },
+  {
     id: "calca-armani",
     gender: "masc",
     name: "Calça Armani",
